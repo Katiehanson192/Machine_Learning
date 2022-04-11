@@ -102,3 +102,7 @@ plt2.show()
 print("done")
 
 
+#Lambda functions
+    #doesn't have a name, can be created at any point in the code, can only process 1 expression - can only produce 1 result
+    #ex: remainder = lambda num: num % 2 --> function object. remainder becomes a function. same thing as def remainder(num): return num % 2
+    #most useful when high level function, calling a lower level function
