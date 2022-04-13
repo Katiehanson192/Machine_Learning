@@ -47,5 +47,33 @@ for p,e in zip(predicted[::5], expected[::5]): #[::5] = look at every 5th elemen
 #have only 1 feature (year and temp) which is why predicted and expected aren't close
 
 #predicting future years using lambda so we give it X, so it'll give us the corresponding value of y
-predict = list(lambda x: lr.coef_*x + lr.intercept_)
+predict = lambda x: lr.coef_*x + lr.intercept_ #this is mx+b
 
+print(predict(2025))
+print(predict(1890))
+
+#visualize data compared to regression line
+import seaborn as sns
+
+axes = sns.scatterplot(
+    data=nyc,
+    x = 'Date',
+    y = 'Temperature',
+    hue= 'Temperature',
+    palette ='winter',
+    legend = False,
+)
+
+axes.set_ylim(10,70) #scale for y axis
+
+import numpy as np
+x = np.array([min(nyc.Date.values), max(nyc.Date.values)]) #creating regression line. need 4 points: beginning points of x and y and end points of x and y
+print(x)
+y = predict(x)
+print(y)
+
+#creating the line
+import matplotlib.pyplot as plt
+
+line = plt.plot(x,y)
+plt.show()

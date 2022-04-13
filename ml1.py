@@ -13,6 +13,9 @@ print(digits.target[:2]) #returns [0 1] the first target. target of these 2 numb
 print(digits.target.shape) #returns rows (samples) and # of columns (features)
                             #target attribute has one 1 column b/c target only has one value (the pixels are representing 1 value-drawing out 1 number)
                             
+#print(digits.data[1]) #the first sample (row) in the dataset has 64 columns
+#print(digits.target[1]) #the first sample represents the digit 1
+#print(digits.target_names.shape) #identifies the # of unique target values. returns (10,)
 '''
 data array: The 1797 samples (digit images), each with 64 features 
 with values 0 (white) to 16 (black), representing pixel intensities
@@ -23,12 +26,19 @@ with values 0 (white) to 16 (black), representing pixel intensities
 
 #so far = 1 dimensional array
 
-print(digits.images[:2]) #creates a 2D array
+print(digits.images[:2]) #creates a 2D array. images = same thing as .data, just a different format
                         #CAN'T be used in model (model needs 1D array)
+
 
 import matplotlib.pyplot as plt
 
 fig, axes =plt.subplots(nrows=4, ncols=6, figsize = (6,4))
+'''
+zip function bundles 3 iterables and produces 1 interable (axes, image, target = item)
+axes.imshow(image,cmap = plt.cm.gray_r) = grayscale image data
+axes.set_xticks([]) and set_yticks([]) = remove x and y axes tick marks
+axes.set_title(target) = target value of the image
+'''
 
 for item in zip(axes.ravel(), digits.images,digits.target): #axes.ravel = flatten 2D array, each graph has an image and a target on it
     axes,image,target = item #zip method = will iterate more than 1 list at the same time
@@ -73,6 +83,7 @@ print(predicted[:20])
 
 print(expected[:20]) #most of the first 20 elements were predicted as expected
 
+
 #locate all incorrect predictions for the entire test set
 wrong = [(p,e) for (p,e) in zip(predicted, expected) if p !=e] #if expected and predicted are not equal, add it to the "wrong" list
 
@@ -106,3 +117,4 @@ print("done")
     #doesn't have a name, can be created at any point in the code, can only process 1 expression - can only produce 1 result
     #ex: remainder = lambda num: num % 2 --> function object. remainder becomes a function. same thing as def remainder(num): return num % 2
     #most useful when high level function, calling a lower level function
+
