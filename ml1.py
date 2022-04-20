@@ -2,7 +2,7 @@ from sklearn.datasets import load_digits #load_digits = a dataset, to change, ju
 
 digits = load_digits()
 
-print(digits.data[:2]) #64 numbers that represent a number
+print(digits.data) #64 numbers that represent a number
                         #possible numbers: 0-16 b/c this is the pixel intensity for each of the numbers?
 
 print(digits.data.shape) #returns # of rows and columns, 64 columns = 8x8 dataframe?
@@ -16,10 +16,10 @@ print(digits.target.shape) #returns rows (samples) and # of columns (features)
 #print(digits.data[1]) #the first sample (row) in the dataset has 64 columns
 #print(digits.target[1]) #the first sample represents the digit 1
 #print(digits.target_names.shape) #identifies the # of unique target values. returns (10,)
-'''
-data array: The 1797 samples (digit images), each with 64 features 
-with values 0 (white) to 16 (black), representing pixel intensities
-'''
+
+#data array: The 1797 samples (digit images), each with 64 features 
+#with values 0 (white) to 16 (black), representing pixel intensities
+
 
 #packages to install: sklearn, pandas, matplotlib, seaborn
 #each number has multiple sets of values for pixel intensity (each of the 1797 samples have their own set of values depending on their target - number that the pixels are forming)
@@ -33,12 +33,12 @@ print(digits.images[:2]) #creates a 2D array. images = same thing as .data, just
 import matplotlib.pyplot as plt
 
 fig, axes =plt.subplots(nrows=4, ncols=6, figsize = (6,4))
-'''
-zip function bundles 3 iterables and produces 1 interable (axes, image, target = item)
-axes.imshow(image,cmap = plt.cm.gray_r) = grayscale image data
-axes.set_xticks([]) and set_yticks([]) = remove x and y axes tick marks
-axes.set_title(target) = target value of the image
-'''
+
+#zip function bundles 3 iterables and produces 1 interable (axes, image, target = item)
+#axes.imshow(image,cmap = plt.cm.gray_r) = grayscale image data
+#axes.set_xticks([]) and set_yticks([]) = remove x and y axes tick marks
+#axes.set_title(target) = target value of the image
+
 
 for item in zip(axes.ravel(), digits.images,digits.target): #axes.ravel = flatten 2D array, each graph has an image and a target on it
     axes,image,target = item #zip method = will iterate more than 1 list at the same time
